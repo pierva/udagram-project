@@ -11,6 +11,8 @@ ap.add_argument("-i", "--image", required=True,
 	help="absolute path to the image")
 arg = vars(ap.parse_args())
 
+print(arg)
+
 img = cv2.imread(arg['image'],0)
 
 def autoCanny(image, sigma=0.33):

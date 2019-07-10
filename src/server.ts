@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles, validateExtension} from './util/util';
 import validUrl from 'valid-url';
+import { findEdges } from './util/child-process';
 
 (async () => {
 
@@ -37,6 +38,7 @@ import validUrl from 'valid-url';
       // Process the image
       let imgPath = await filterImageFromURL(image_url);
       if(imgPath) {
+        await findEdges(imgPath);
         res.on('finish', () => deleteLocalFiles([imgPath]));
         return res.status(200).sendFile(imgPath);
       } else {

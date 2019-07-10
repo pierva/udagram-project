@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import argparse
-from matplotlib import pyplot as plt
 import os
 
 
@@ -11,6 +10,7 @@ ap.add_argument("-i", "--image", required=True,
 	help="absolute path to the image")
 arg = vars(ap.parse_args())
 
+print('file open')
 print(arg)
 
 img = cv2.imread(arg['image'],0)
@@ -39,10 +39,3 @@ def edgedImage(image, sigma=0.33):
 
 
 	return edged
-
-plt.subplot(121),plt.imshow(img,cmap = 'gray')
-plt.title('Original Image'), plt.xticks([]), plt.yticks([])
-plt.subplot(122),plt.imshow(autoCanny(img),cmap = 'gray')
-plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
-
-plt.show()

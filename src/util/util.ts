@@ -32,3 +32,20 @@ export async function deleteLocalFiles(files:Array<string>){
         fs.unlinkSync(file);
     }
 }
+
+// validateExtension
+// helper function to check whether the file is indeed an image
+// INPUTS
+//    imageUrl
+// OUTPUT
+//    boolean
+export function validateExtension(imageUrl: string) {
+  if (imageUrl) {
+    const validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'tiff'];
+    const urlParts = imageUrl.split('.');
+    if (validExtensions.includes(urlParts[urlParts.length-1].toLowerCase())) {
+      return true;
+    }
+    return false;
+  }
+}

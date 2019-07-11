@@ -30,11 +30,6 @@ import { findEdges } from './util/child-process';
         return res.status(400).send({error: 'Please enter a valid url'});
       }
 
-      // Check if the file is an image
-      if (!validateExtension(image_url)) {
-        return res.status(415).send({error: 'Invalid media type'});
-      }
-
       // Process the image
       let imgPath = await filterImageFromURL(image_url);
       if(imgPath) {
@@ -46,7 +41,7 @@ import { findEdges } from './util/child-process';
       }
 
     } catch (e) {
-      console.log(e)
+      console.log('Unable to read the image. Possible mime type error');
       return res.status(500).send({error: 'Unable to process your request'})
     }
   });

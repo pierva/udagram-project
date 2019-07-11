@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import argparse
 import os
+import sys
 
 
 # construct the argument parse and parse the arguments
@@ -10,7 +11,8 @@ ap.add_argument("-i", "--image", required=True,
 	help="absolute path to the image")
 arg = vars(ap.parse_args())
 
-img = cv2.imread(arg['image'],0)
+imgPath = arg['image']
+img = cv2.imread(imgPath, 0)
 
 def autoCanny(image, sigma=0.33):
 	# compute the median of the single channel pixel intensities
@@ -31,6 +33,9 @@ def edgedImage(image, sigma=0.33):
 
 	# apply Canny edge detection using the automatically determined threshold
 	auto = autoCanny(blurred)
-	return auto
+	path = imgPath+'.edged.png'
+	cv2.imwrite(path, auto)
+	return path
 
-edgedImage(img)
+print(edgedImage(img))
+sys.stdout.flush()

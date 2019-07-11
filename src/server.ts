@@ -33,15 +33,13 @@ import { findEdges } from './util/child-process';
       // Process the image
       let imgPath = await filterImageFromURL(image_url);
       if(imgPath) {
-        await findEdges(imgPath);
-        res.on('finish', () => deleteLocalFiles([imgPath]));
-        return res.status(200).sendFile(imgPath);
+        const newPath = await findEdges(imgPath);
+        res.on('finish', () => deleteLocalFiles([imgPath, newPath.trim()]));
+        return res.status(200).sendFile(newPath.trim());
       } else {
-        return res.status(500).send({error: 'Unable to process your request'});
+        return res.status(500).send({error: 'Unable to elaborate your image'});
       }
-
-    } catch (e) {
-      console.log('Unable to read the image. Possible mime type error');
+    } catch {
       return res.status(500).send({error: 'Unable to process your request'})
     }
   });

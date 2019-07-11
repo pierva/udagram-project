@@ -10,9 +10,6 @@ ap.add_argument("-i", "--image", required=True,
 	help="absolute path to the image")
 arg = vars(ap.parse_args())
 
-print('file open')
-print(arg)
-
 img = cv2.imread(arg['image'],0)
 
 def autoCanny(image, sigma=0.33):
@@ -23,19 +20,17 @@ def autoCanny(image, sigma=0.33):
 	lower = int(max(0, (1.0 - sigma) * v))
 	upper = int(min(255, (1.0 + sigma) * v))
 	edged = cv2.Canny(image, lower, upper)
-
-
 	return edged
 
 def edgedImage(image, sigma=0.33):
 
     # compute the median of the single channel pixel intensities
-	image = cv2.imread(imagePath)
-	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-	blurred = cv2.GaussianBlur(gray, (3, 3), 0)
+	# image is already converted to grayscale in nodejs
+	# gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY
+	blurred = cv2.GaussianBlur(image, (3, 3), 0)
 
 	# apply Canny edge detection using the automatically determined threshold
 	auto = autoCanny(blurred)
+	return auto
 
-
-	return edged
+edgedImage(img)

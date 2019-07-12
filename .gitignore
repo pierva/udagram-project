@@ -2,3 +2,5 @@
 /node_modules
 /venv/*
 src/util/tmp/*
+/www
+.elasticbeastalk/*

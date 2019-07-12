@@ -49,16 +49,39 @@ Open a new terminal within the project directory and run:
 1. Initialize a new project: `npm i`
 2. run the development server with `npm run dev`
 
+## Available endpoints
 
-### Create a new endpoint in the server.ts file
+This micro service has two endpoins:
+1. '/'
+2. '/filteredimage
 
-The starter code has a task for you to complete an endpoint in `./src/server.ts` which uses query paramater to download an image from a public URL, filter the image, and return the result.
+The first endpoint sends a short message to the user with some tips on how to use the service.
 
-We've included a few helper functions to handle some of these concepts and we're importing it for you at the top of the `./src/server.ts`  file.
+The second endpoint is the important one. It accepts the following query parameters:
 
-```typescript
-import {filterImageFromURL, deleteLocalFiles} from './util/util';
 ```
+image_url [required]
+lower [optional - upper parameter must be provided]
+upper [optional - lower parameter must be provided]
+```
+
+The first parameter, `image_url`, is mandatory, and is a full URI that points to an image.
+We'll make use of the Jimp library to check whether the url points to a valid image or not.
+
+`lower` and `upper` are optional parameters and must be used jointly. These two parameters specify the lower and upper threshold limits for the OpenCV Canny function used to find the image edges.
+
+If lower and upper are not specified, python will use a method to auto detect the best thresholds.
+
+Endpoint example without thresholds:
+```
+http://localhost:8082/filteredimage?image_url=https://images.unsplash.com/photo-1529940340007-8ef64abc360a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=753&q=80
+```
+
+Endpoint example with thresholds:
+```
+http://localhost:8082/filteredimage?image_url=https://images.unsplash.com/photo-1529940340007-8ef64abc360a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=753&q=80&lower=50&upper=200
+```
+
 
 ### Deploying your system
 

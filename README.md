@@ -1,13 +1,54 @@
 # Udagram Image Filtering Microservice
 
-## Tasks
+This API makes use of nodejs to read an image from an URL, then passes it to python with a sub process. Python then filters the image, finds the edges with OpenCV and returns an absolute path to Nodejs.
 
-### Setup Node Enviornment
+The processed image, will then sent as response to the user. Once the image is received by the user, all the temporary working files, get deleted from the server.
 
-You'll need to create a new node server. Open a new terminal within the project directory and run:
+## Get started
+
+### Setup Node environment
+
+In order to use this service, it is necessary to have Nodejs v10.16 (or grater) installed on the machine.
+
+Open a new terminal within the project directory and run:
 
 1. Initialize a new project: `npm i`
 2. run the development server with `npm run dev`
+
+
+### Setup Python3 environment
+It is recommended to create a virtual environment for the project.
+
+If you don't have the python3 package, run the following command.
+```sh
+$ sudo apt-get install python3-venv
+```
+
+Navigate into your project folder and create a new enviornment.
+```sh
+$ sudo python3 -m venv env
+```
+
+`env` is the name of the environment. You can give any name you like.
+
+Activate the new environment.
+
+```sh
+$ source <path-to-enviornment>/bin/activate
+
+# Considering the environment is called env the command will be
+$ source env/bin/activate
+```
+
+### Install python dependencies
+This service needs two dependencies in order to work
+1. OpenCV
+2. numpy (required by OpenCV)
+
+Type the following command to install the two libraries.
+```sh
+$ pip3 install -r requirements.txt
+```
 
 ### Create a new endpoint in the server.ts file
 

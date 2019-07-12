@@ -2,9 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { sequelize } from './sequelize';
 
-import {filterImageFromURL, deleteLocalFiles, validateExtension} from './util/util';
-import validUrl from 'valid-url';
-import { findEdges } from './util/child-process';
 
 import { IndexRouter } from './controllers/v0/index.router';
 import { V0MODELS } from './controllers/v0/model.index';

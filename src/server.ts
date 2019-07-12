@@ -19,6 +19,8 @@ import { findEdges } from './util/child-process';
   app.get("/filteredimage/", async (req, res) => {
     try {
       let { image_url } = req.query;
+      let { lower } = req.query;
+      let { upper } = req.query;
       // Check if the user has entered any query parameter
       if (!image_url) {
         return res.status(400)
@@ -33,7 +35,7 @@ import { findEdges } from './util/child-process';
       // Process the image
       let imgPath = await filterImageFromURL(image_url);
       if(imgPath) {
-        const newPath = await findEdges(imgPath);
+        const newPath = await findEdges(imgPath, lower, upper);
         res.on('finish', () => deleteLocalFiles([imgPath, newPath.trim()]));
         return res.status(200).sendFile(newPath.trim());
       } else {

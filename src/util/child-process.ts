@@ -2,11 +2,14 @@ import {spawn} from "child_process";
 const path = require('path');
 
 
-export async function findEdges(imgPath: string): Promise<string> {
+export async function findEdges(imgPath: string, lower: string, upper: string):
+                                Promise<string> {
   return new Promise(async resolve => {
     const pythonProcess = spawn('python3',[
         path.join(__dirname, "opencvfilter.py"),
-        '-i', imgPath
+        '-i', imgPath,
+        '-l', lower,
+        '-u', upper
       ]);
     if (pythonProcess !== undefined) {
         pythonProcess.stdout.on('data', (data) => {

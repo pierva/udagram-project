@@ -9,6 +9,10 @@ import sys
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True,
 	help="absolute path to the image")
+ap.add_argument('-l', "--lower", required=False,
+	help="lower canny threshold")
+ap.add_argument('-u', "--upper", required=False,
+	help="upper canny threshold")
 arg = vars(ap.parse_args())
 
 imgPath = arg['image']
@@ -30,11 +34,20 @@ def edgedImage(image, sigma=0.33):
 	# image is already converted to grayscale in nodejs
 	# gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY
 	blurred = cv2.GaussianBlur(image, (3, 3), 0)
+	lower = arg['lower']
+	upper = arg['upper']
+	if (lower and upper):
+		# if custom thresholds are availabe, use them
+		canny = cv2.Canny(blurred, int(lower), int(upper))
+	else:
+		# if no thresholds are provided, use apply Canny edge detection
+		# using the automatically determined threshold
+		canny = autoCanny(blurred)
 
-	# apply Canny edge detection using the automatically determined threshold
-	auto = autoCanny(blurred)
+	# # apply Canny edge detection using the automatically determined threshold
+	# auto = autoCanny(blurred)
 	path = imgPath+'.edged.png'
-	cv2.imwrite(path, auto)
+	cv2.imwrite(path, canny)
 	return path
 
 print(edgedImage(img))

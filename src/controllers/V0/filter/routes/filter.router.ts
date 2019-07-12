@@ -5,7 +5,7 @@ const router: Router = Router();
 
 
 // endpoint to get the image, process it and return the filtered image
-router.get("/filteredimage/", async (req: Request, res: Response) => {
+router.get("/filteredimage", async (req: Request, res: Response) => {
   try {
     let { image_url } = req.query;
     let { lower } = req.query;

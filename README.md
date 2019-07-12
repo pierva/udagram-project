@@ -1,8 +1,8 @@
 # Udagram Image Filtering Microservice
 
-This API makes use of nodejs to read an image from an URL, then passes it to python with a sub process. Python then filters the image, finds the edges with OpenCV and returns an absolute path to Nodejs.
+This API makes use of nodejs to read an image from an URL and then passes it to python with a sub process. Python then filters the image, finds the edges with OpenCV and returns an absolute path to the image to Nodejs.
 
-The processed image, will then sent as response to the user. Once the image is received by the user, all the temporary working files, get deleted from the server.
+The processed image, will then be sent as response to the user. Once the image is received by the user, all the temporary working files, will be deleted from the server.
 
 ## Get started
 

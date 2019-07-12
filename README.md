@@ -4,7 +4,18 @@ This API makes use of nodejs to read an image from an URL and then passes it to 
 
 The processed image, will then be sent as response to the user. Once the image is received by the user, all the temporary working files, will be deleted from the server.
 
+## Table of contents
++ [Get started](#get-started)
+  * [Setup Python3 environment](#setup-python3-environment)
+  * [Install Python dependencies](#install-python-dependencies)
+  * [Setup Node environment](#setup-node-environment)
++ [Available endpoints](#availabe-endpoints)
+  * [Endpoint examples](#endpoint-examples)
+
+
+
 ## Get started
+This microservice makes use of Nodejs to process requests and responses, and python3 to process the image.
 
 ### Setup Python3 environment
 It is recommended to create a virtual environment for the project.
@@ -30,7 +41,7 @@ $ source <path-to-enviornment>/bin/activate
 $ source env/bin/activate
 ```
 
-### Install python dependencies
+### Install Python dependencies
 This service needs two dependencies in order to work
 1. OpenCV
 2. numpy (required by OpenCV)
@@ -51,7 +62,7 @@ Open a new terminal within the project directory and run:
 
 ## Available endpoints
 
-This micro service has two endpoins:
+This micro service has two endpoints:
 1. '/'
 2. '/filteredimage
 
@@ -71,6 +82,8 @@ We'll make use of the Jimp library to check whether the url points to a valid im
 `lower` and `upper` are optional parameters and must be used jointly. These two parameters specify the lower and upper threshold limits for the OpenCV Canny function used to find the image edges.
 
 If lower and upper are not specified, python will use a method to auto detect the best thresholds.
+
+### Endpoint examples
 
 Endpoint example without thresholds:
 ```

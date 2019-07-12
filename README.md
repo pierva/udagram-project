@@ -6,16 +6,6 @@ The processed image, will then be sent as response to the user. Once the image i
 
 ## Get started
 
-### Setup Node environment
-
-In order to use this service, it is necessary to have Nodejs v10.16 (or grater) installed on the machine.
-
-Open a new terminal within the project directory and run:
-
-1. Initialize a new project: `npm i`
-2. run the development server with `npm run dev`
-
-
 ### Setup Python3 environment
 It is recommended to create a virtual environment for the project.
 
@@ -49,6 +39,16 @@ Type the following command to install the two libraries.
 ```sh
 $ pip3 install -r requirements.txt
 ```
+
+### Setup Node environment
+
+In order to use this service, it is necessary to have Nodejs v10.16 (or grater) installed on the machine.
+
+Open a new terminal within the project directory and run:
+
+1. Initialize a new project: `npm i`
+2. run the development server with `npm run dev`
+
 
 ### Create a new endpoint in the server.ts file
 

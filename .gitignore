@@ -8,3 +8,4 @@ src/util/tmp/*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+.npmrc

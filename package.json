@@ -30,8 +30,14 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/jsonwebtoken": "^8.3.2",
+    "@types/validator": "^10.11.1",
+    "bcrypt": "^3.0.6",
+    "email-validator": "^2.0.4",
     "express": "^4.17.0",
     "jimp": "^0.6.4",
+    "jsonwebtoken": "^8.5.1",
     "sequelize": "^5.10.0",
     "sequelize-typescript": "^0.6.11",
     "valid-url": "^1.0.9"

@@ -7,7 +7,7 @@ export async function findEdges(imgPath: string, lower: string, upper: string):
   return new Promise(async (resolve, reject) => {
     lower = lower ? lower : '';
     upper = upper ? upper: '';
-    const pythonProcess = spawn('python3',[
+    const pythonProcess = spawn('python',[
         path.join(__dirname, "opencvfilter.py"),
         '-i', imgPath,
         '-l', lower,

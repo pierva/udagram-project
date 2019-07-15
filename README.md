@@ -11,6 +11,7 @@ The processed image, will then be sent as response to the user. Once the image i
   * [Setup Node environment](#setup-node-environment)
 + [Available endpoints](#availabe-endpoints)
   * [Endpoint examples](#endpoint-examples)
++ [Deploying your system](#deploying-your-system)
 
 
 
@@ -95,23 +96,59 @@ Endpoint example with thresholds:
 http://localhost:8082/filteredimage?image_url=https://images.unsplash.com/photo-1529940340007-8ef64abc360a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=753&q=80&lower=50&upper=200
 ```
 
+## Deploying your system
 
-### Deploying your system
+The deploy to elasticbeanstalk run the following command in the root of your project:
+```sh
+$ eb init
+```
+You need to answer few questions in order to initialize the elasticbean environment and create the configuration file (config.yml).
+
+Now we can create the environment in aws with:
+```sh
+$ eb create
+```
+
+Update the `config.yml` file in order to use the artifact for the deployment. Add the below section under the master key:
+
+```yml
+  deploy:
+    artifact: ./www/Archive.zip
+```
+
+The first part of `config.yml` should now look like this:
+
+```yml
+branch-defaults:
+  master:
+    environment: null
+    group_suffix: null
+  deploy:
+    artifact: ./www/Archive.zip
+```
+
+Basically we are telling elasticbean to use `Archive.zip` for the deployment.
+
+Run this command, to actually create the archive:
+```sh
+$ npm run build
+```
+
+Deploy your code with this command:
+```sh
+$ eb deploy
+```
+
+If there isn't any default environment setup, you need to specify the environment name:
+
+```sh
+$ eb deploy <your-environment-name>
+```
+
+You can check the environment name in the aws elasticbeanstalk console.
+
+At the end of the deployment, if everything is working correctly you should see a green instance similar to the below screenshot:
+
+[alt eb deployed](./eb_deployed.png)
 
 Follow the process described in the course to `eb init` a new application and `eb create` a new enviornment to deploy your image-filter service! Don't forget you can use `eb deploy` to push changes.
-
-## Stand Out (Optional)
-
-### Refactor the course RESTapi
-
-If you're feeling up to it, refactor the course RESTapi to make a request to your newly provisioned image server.
-
-### Authentication
-
-Prevent requests without valid authentication headers.
-> !!NOTE if you choose to submit this, make sure to add the token to the postman collection and export the postman collection file to your submission so we can review!
-
-### Custom Domain Name
-
-Add your own domain name and have it point to the running services (try adding a subdomain name to point to the processing server)
-> !NOTE: Domain names are not included in AWS’ free tier and will incur a cost.

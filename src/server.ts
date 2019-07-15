@@ -51,7 +51,16 @@ import { findEdges } from './util/child-process';
   // Root Endpoint
   // Displays a simple message to the user
   app.get( "/", async ( req, res ) => {
-    res.send("try GET /filteredimage?image_url={{}}")
+    res.status(200).send({
+        "message": "Access the /filteredimage route to get a filtered image",
+        "route": "/filteredimage",
+        "parameters": {
+          "param1": "image_url (required)",
+          "param2": "lower (optional - lower Canny threshold. upper required)",
+          "param3": "upper (optional - upper Canny threshold. lower required)"
+        },
+        "example": "http://udagram-image-filter-pierva-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://images.unsplash.com/photo-1529940340007-8ef64abc360a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=753&q=80"
+      })
   } );
 
 

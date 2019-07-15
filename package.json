@@ -8,7 +8,7 @@
     "clean": "rm -rf www/ || true",
     "copy": "cp src/util/opencvfilter.py www/util/",
     "build": "npm run clean && tsc && cp package.json www/package.json && npm run copy && mkdir www/util/tmp/ && cd www && zip -r Archive.zip . && cd ..",
-    "dev": "ts-node-dev --respawn --transpileOnly ./server.ts"
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts"
   },
   "repository": {
     "type": "git",

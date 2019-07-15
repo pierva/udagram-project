@@ -112,8 +112,8 @@ $ eb create
 Update the `config.yml` file in order to use the artifact for the deployment. Add the below section under the master key:
 
 ```yml
-  deploy:
-    artifact: ./www/Archive.zip
+deploy:
+  artifact: ./www/Archive.zip
 ```
 
 The first part of `config.yml` should now look like this:
@@ -123,8 +123,8 @@ branch-defaults:
   master:
     environment: null
     group_suffix: null
-  deploy:
-    artifact: ./www/Archive.zip
+deploy:
+  artifact: ./www/Archive.zip
 ```
 
 Basically we are telling elasticbean to use `Archive.zip` for the deployment.
@@ -149,6 +149,6 @@ You can check the environment name in the aws elasticbeanstalk console.
 
 At the end of the deployment, if everything is working correctly you should see a green instance similar to the below screenshot:
 
-[alt eb deployed](./eb_deployed.png)
+![alt eb deployed](./eb_deployed.png)
 
 Follow the process described in the course to `eb init` a new application and `eb create` a new enviornment to deploy your image-filter service! Don't forget you can use `eb deploy` to push changes.
